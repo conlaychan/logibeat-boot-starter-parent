@@ -38,15 +38,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.kevinsawicki</groupId>
-            <artifactId>http-request</artifactId>
-            <version>6.0</version>
-        </dependency>
-        <dependency>
             <!-- 此依赖在 spring boot 中被配置为 scope = runtime，在此重置为 compile -->
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
