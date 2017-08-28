@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.logibeat.cloud.boot.web.LogibeatWebAutoConfiguration
