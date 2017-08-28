@@ -52,7 +52,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * 加载白名单配置文件 white.list ，注意：暂不支持正则，只允许精确匹配
+     * 加载白名单配置文件 white.list ，注意：考虑到正则可能导致效率低下，所以暂不支持正则，只允许精确匹配
      */
     @PostConstruct
     public void loadWhiteList() throws IOException {
