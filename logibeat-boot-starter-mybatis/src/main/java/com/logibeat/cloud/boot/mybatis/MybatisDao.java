@@ -177,6 +177,15 @@ public abstract class MybatisDao<T extends BaseEntity> {
     }
 
     /**
+     * 统计数量
+     * @param criteria 筛选对象
+     * @return 数量
+     */
+    public long count(EntityCriteria criteria){
+        return sqlSession.selectOne(sqlId(COUNT), criteria);
+    }
+
+    /**
      * 查询分页对象
      *
      * @param pageNo 第几页
@@ -196,20 +205,17 @@ public abstract class MybatisDao<T extends BaseEntity> {
      * @return 查询到的分页对象
      */
     public Paging<T> paging(Integer pageNo, Integer pageSize, EntityCriteria criteria) {
-        Map<String, Object> params = new HashMap<>();
-        if (criteria != null) {    //查询条件不为空
-            params.putAll(Params.objToMap(criteria));
-        }
-        // get total count
-        Long total = sqlSession.selectOne(sqlId(COUNT), criteria);
+        long total = this.count(criteria);
         if (total <= 0) {
             return Paging.empty();
         }
-        PageInfo pageInfo = new PageInfo(pageNo, pageSize);
-        params.put("offset", pageInfo.getOffset());
-        params.put("limit", pageInfo.getLimit());
-        // get data
-        List<T> datas = sqlSession.selectList(sqlId(PAGING), params);
+
+        if (criteria == null) {
+            criteria = new EntityCriteria();
+        }
+
+        criteria.buildOffsetLimit(pageNo, pageSize);
+        List<T> datas = sqlSession.selectList(sqlId(PAGING), criteria);
         return new Paging<>(total, datas);
     }
 
