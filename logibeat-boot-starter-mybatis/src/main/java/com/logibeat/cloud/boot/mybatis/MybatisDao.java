@@ -1,10 +1,8 @@
 package com.logibeat.cloud.boot.mybatis;
 
-import com.logibeat.cloud.boot.mybatis.model.PageInfo;
 import com.logibeat.cloud.common.model.BaseEntity;
 import com.logibeat.cloud.common.model.EntityCriteria;
 import com.logibeat.cloud.common.model.Paging;
-import com.logibeat.cloud.common.utils.Params;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +11,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 public abstract class MybatisDao<T extends BaseEntity> {
