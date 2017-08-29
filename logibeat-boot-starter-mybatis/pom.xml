@@ -24,6 +24,13 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.11</version>
+            <exclusions>
+                <exclusion>
+                    <!-- common 中已经有了 guava -->
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- mysql & datasource -->
