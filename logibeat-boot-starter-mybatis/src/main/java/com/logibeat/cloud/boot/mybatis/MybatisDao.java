@@ -3,6 +3,7 @@ package com.logibeat.cloud.boot.mybatis;
 import com.logibeat.cloud.common.model.BaseEntity;
 import com.logibeat.cloud.common.model.EntityCriteria;
 import com.logibeat.cloud.common.model.Paging;
+import com.logibeat.cloud.common.utils.Params;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,12 +207,16 @@ public abstract class MybatisDao<T extends BaseEntity> {
             return Paging.empty();
         }
 
+        Object params;
         if (criteria == null) {
             criteria = new EntityCriteria();
+            criteria.buildOffsetLimit(pageNo, pageSize);
+            params = Params.objToMap(criteria);
+        } else {
+            criteria.buildOffsetLimit(pageNo, pageSize);
+            params = criteria;
         }
-
-        criteria.buildOffsetLimit(pageNo, pageSize);
-        List<T> datas = sqlSession.selectList(sqlId(PAGING), criteria);
+        List<T> datas = sqlSession.selectList(sqlId(PAGING), params);
         return new Paging<>(total, datas);
     }
 
