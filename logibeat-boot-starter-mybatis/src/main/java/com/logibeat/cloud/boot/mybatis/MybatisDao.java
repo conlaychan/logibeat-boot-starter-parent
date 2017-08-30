@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-public abstract class MybatisDao<T extends BaseEntity> {
+public abstract class MybatisDao<T extends BaseEntity, C extends EntityCriteria> {
 
     @Autowired
     protected SqlSessionTemplate sqlSession;
@@ -169,7 +169,7 @@ public abstract class MybatisDao<T extends BaseEntity> {
      * @param criteria 筛选对象
      * @return 查询到的对象列表
      */
-    public List<T> list(EntityCriteria criteria) {
+    public List<T> list(C criteria) {
         return sqlSession.selectList(sqlId(LIST), criteria);
     }
 
@@ -178,7 +178,7 @@ public abstract class MybatisDao<T extends BaseEntity> {
      * @param criteria 筛选对象
      * @return 数量
      */
-    public long count(EntityCriteria criteria){
+    public long count(C criteria){
         return sqlSession.selectOne(sqlId(COUNT), criteria);
     }
 
@@ -201,7 +201,7 @@ public abstract class MybatisDao<T extends BaseEntity> {
      * @param criteria 即查询条件
      * @return 查询到的分页对象
      */
-    public Paging<T> paging(Integer pageNo, Integer pageSize, EntityCriteria criteria) {
+    public Paging<T> paging(Integer pageNo, Integer pageSize, C criteria) {
         long total = this.count(criteria);
         if (total <= 0) {
             return Paging.empty();
@@ -209,9 +209,9 @@ public abstract class MybatisDao<T extends BaseEntity> {
 
         Object params;
         if (criteria == null) {
-            criteria = new EntityCriteria();
-            criteria.buildOffsetLimit(pageNo, pageSize);
-            params = Params.objToMap(criteria);
+            EntityCriteria entityCriteria = new EntityCriteria();
+            entityCriteria.buildOffsetLimit(pageNo, pageSize);
+            params = Params.objToMap(entityCriteria);
         } else {
             criteria.buildOffsetLimit(pageNo, pageSize);
             params = criteria;
