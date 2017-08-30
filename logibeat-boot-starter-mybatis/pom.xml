@@ -16,7 +16,6 @@
         <dependency>
             <groupId>com.logibeat.cloud</groupId>
             <artifactId>logibeat-common</artifactId>
-            <version>1.0-RELEASE</version>
         </dependency>
 
         <!-- 高逼格反射工具 -->

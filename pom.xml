@@ -60,6 +60,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>com.logibeat.cloud</groupId>
+                <artifactId>logibeat-common</artifactId>
+                <version>1.0-RELEASE</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
