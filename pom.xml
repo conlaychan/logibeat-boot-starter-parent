@@ -12,6 +12,7 @@
         <module>logibeat-boot-starter-mybatis</module>
         <module>logibeat-boot-starter-web</module>
         <module>logibeat-boot-starter-rpc</module>
+        <module>logibeat-boot-starter-redis</module>
     </modules>
 
     <properties>
