@@ -21,8 +21,6 @@ public class JedisTemplate {
             jedis = jedisPool.getResource();
             jedis.select(dbIndex);
             return jedisAction.action(jedis);
-        } catch (RuntimeException e) {
-            throw e;
         } finally {
             if (jedis != null) jedis.close();
         }
@@ -38,8 +36,6 @@ public class JedisTemplate {
             jedis = jedisPool.getResource();
             jedis.select(dbIndex);
             jedisAction.action(jedis);
-        } catch (RuntimeException e) {
-            throw e;
         } finally {
             if (jedis != null) jedis.close();
         }
