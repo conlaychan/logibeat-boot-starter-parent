@@ -14,8 +14,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.logibeat.cloud</groupId>
+            <artifactId>logibeat-common</artifactId>
         </dependency>
     </dependencies>
 </project>
