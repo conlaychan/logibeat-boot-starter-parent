@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="global">
+
+    <sql id="criteria">
+        <if test="updateAt != null">AND `update_at` = #{updateAt}</if>
+        <if test="createAt != null">AND `create_at` = #{createAt}</if>
+        <if test="updateRange != null">
+            <if test="updateRange.hasLowerBound()">
+                AND `update_at`
+                <if test="updateRange.lowerBoundType == 'OPEN'">&gt;</if>
+                <if test="updateRange.lowerBoundType == 'CLOSED'">&gt;=</if>
+                #{updateRange.lowerEndpoint}
+            </if>
+            <if test="updateRange.hasUpperBound()">
+                AND `update_at`
+                <if test="updateRange.upperBoundType == 'OPEN'">&lt;</if>
+                <if test="updateRange.upperBoundType == 'CLOSED'">&lt;=</if>
+                #{updateRange.upperEndpoint}
+            </if>
+        </if>
+        <if test="createRange != null">
+            <if test="createRange.hasLowerBound()">
+                AND `create_at`
+                <if test="createRange.lowerBoundType == 'OPEN'">&gt;</if>
+                <if test="createRange.lowerBoundType == 'CLOSED'">&gt;=</if>
+                #{createRange.lowerEndpoint}
+            </if>
+            <if test="createRange.hasUpperBound()">
+                AND `create_at`
+                <if test="createRange.upperBoundType == 'OPEN'">&lt;</if>
+                <if test="createRange.upperBoundType == 'CLOSED'">&lt;=</if>
+                #{createRange.upperEndpoint}
+            </if>
+        </if>
+    </sql>
+    
+    <sql id="create">
+        INSERT INTO
+        <include refid="table"/>
+        (<include refid="biz_columns"/>, update_at, create_at)
+        VALUES
+        (<include refid="biz_values"/>,
+        <if test="updateAt == null">now()</if>
+        <if test="updateAt != null">#{updateAt}</if>
+        ,
+        <if test="createAt == null">now()</if>
+        <if test="createAt != null">#{createAt}</if>
+        )
+    </sql>
+    
+    <sql id="creates">
+        INSERT INTO
+        <include refid="table"/>
+        (<include refid="biz_columns"/>, update_at, create_at)
+        VALUES
+        <foreach collection="list" separator="," item="i">
+            (
+            <include refid="biz_values_each"/>,
+            <if test="item.updateAt == null">now()</if>
+            <if test="item.updateAt != null">#{i.updateAt}</if>
+            ,
+            <if test="item.createAt == null">now()</if>
+            <if test="item.createAt != null">#{i.createAt}</if>
+            )
+        </foreach>
+    </sql>
+
+    <sql id="findById">
+        SELECT
+        <include refid="all_columns"/>
+        FROM
+        <include refid="table"/>
+        WHERE id = #{id}
+    </sql>
+    
+    <sql id="findByIds">
+        SELECT
+        <include refid="all_columns"/>
+        FROM
+        <include refid="table"/>
+        WHERE id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </sql>
+    
+    <sql id="deletes">
+        DELETE FROM
+        <include refid="table"/>
+        WHERE id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </sql>
+    
+    <sql id="count">
+        SELECT COUNT(id)
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+    </sql>
+    
+    <sql id="paging">
+        SELECT
+        <include refid="all_columns"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+        <if test="orderBy != null">order by ${orderBy}</if>
+        LIMIT #{offset}, #{limit}
+    </sql>
+    
+    <sql id="list">
+        SELECT
+        <include refid="all_columns"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+        <if test="orderBy != null">order by ${orderBy}</if>
+    </sql>
+</mapper>
