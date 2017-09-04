@@ -58,11 +58,11 @@
         <foreach collection="list" separator="," item="i">
             (
             <include refid="biz_values_each"/>,
-            <if test="item.updateAt == null">now()</if>
-            <if test="item.updateAt != null">#{i.updateAt}</if>
+            <if test="i.updateAt == null">now()</if>
+            <if test="i.updateAt != null">#{i.updateAt}</if>
             ,
-            <if test="item.createAt == null">now()</if>
-            <if test="item.createAt != null">#{i.createAt}</if>
+            <if test="i.createAt == null">now()</if>
+            <if test="i.createAt != null">#{i.createAt}</if>
             )
         </foreach>
     </sql>
