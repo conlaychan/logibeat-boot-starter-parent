@@ -12,4 +12,18 @@
     <artifactId>logibeat-boot-starter-hessian</artifactId>
     <version>1.0-RELEASE</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.logibeat.cloud.boot</groupId>
+            <artifactId>rpc-common</artifactId>
+            <version>1.0-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.8.RELEASE</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>
