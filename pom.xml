@@ -13,6 +13,7 @@
         <module>logibeat-boot-starter-web</module>
         <module>logibeat-boot-starter-rpc</module>
         <module>logibeat-boot-starter-redis</module>
+        <module>logibeat-boot-starter-logging</module>
     </modules>
 
     <properties>
