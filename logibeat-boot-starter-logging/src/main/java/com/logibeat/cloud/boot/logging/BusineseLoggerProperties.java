@@ -9,9 +9,9 @@ import org.springframework.boot.logging.LogLevel;
 public class BusineseLoggerProperties {
 
     /**
-     * 是否启用业务日志与系统日志的分流
+     * 是否启用业务日志与系统日志的分流，默认启用
      */
-    private boolean enabled = false;
+    private Boolean enabled;
 
     private String file;
     private LogLevel level = LogLevel.INFO;
