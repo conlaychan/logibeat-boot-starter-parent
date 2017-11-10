@@ -86,7 +86,7 @@ public class BusineseLoggerAutoConfiguration {
         rollingPolicy.setContext(logger.getLoggerContext());
 
         SizeBasedTriggeringPolicy<ILoggingEvent> triggeringPolicy = new SizeBasedTriggeringPolicy<>();
-        triggeringPolicy.setMaxFileSize(FileSize.valueOf("10MB"));
+        triggeringPolicy.setMaxFileSize(FileSize.valueOf(properties.getMaxFileSize()));
         appender.setTriggeringPolicy(triggeringPolicy);
         triggeringPolicy.setContext(logger.getLoggerContext());
 

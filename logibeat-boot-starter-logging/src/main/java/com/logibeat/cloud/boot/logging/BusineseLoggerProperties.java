@@ -14,6 +14,7 @@ public class BusineseLoggerProperties {
     private Boolean enabled;
 
     private String file;
+    private String maxFileSize = "10MB";
     private LogLevel level = LogLevel.INFO;
     private String fileLogPattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %class[%line] : %m%n";
     private String consoleLogPattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t]%replace(%caller{1}){'\\t|Caller.{1}0|\\r\\n', ''} : %m%n";
