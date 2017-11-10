@@ -5,18 +5,18 @@
     <parent>
         <artifactId>logibeat-boot-starter-rpc</artifactId>
         <groupId>com.logibeat.cloud.boot</groupId>
-        <version>1.0-RELEASE</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>logibeat-boot-starter-hessian</artifactId>
-    <version>1.0-RELEASE</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
             <groupId>com.logibeat.cloud.boot</groupId>
             <artifactId>rpc-common</artifactId>
-            <version>1.0-RELEASE</version>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>

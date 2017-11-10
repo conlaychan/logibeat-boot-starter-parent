@@ -7,7 +7,7 @@
     <groupId>com.logibeat.cloud.boot</groupId>
     <artifactId>logibeat-boot-starter-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-RELEASE</version>
+    <version>1.0.0</version>
     <modules>
         <module>logibeat-boot-starter-mybatis</module>
         <module>logibeat-boot-starter-web</module>
@@ -22,6 +22,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <spring-platform.version>Brussels-SR2</spring-platform.version>
         <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
     </properties>
 
@@ -62,11 +64,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring-platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.logibeat.cloud</groupId>
                 <artifactId>logibeat-common</artifactId>
-                <version>1.0-RELEASE</version>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
