@@ -55,7 +55,7 @@
         <include refid="table"/>
         (<include refid="biz_columns"/>, update_at, create_at)
         VALUES
-        <foreach collection="list" separator="," item="i">
+        <foreach collection="collection" separator="," item="i">
             (
             <include refid="biz_values_each"/>,
             <if test="i.updateAt == null">now()</if>
@@ -81,7 +81,7 @@
         FROM
         <include refid="table"/>
         WHERE id IN
-        <foreach item="id" collection="list" open="(" separator="," close=")">
+        <foreach item="id" collection="collection" open="(" separator="," close=")">
             #{id}
         </foreach>
     </sql>
@@ -90,7 +90,7 @@
         DELETE FROM
         <include refid="table"/>
         WHERE id in
-        <foreach item="id" collection="list" open="(" separator="," close=")">
+        <foreach item="id" collection="collection" open="(" separator="," close=")">
             #{id}
         </foreach>
     </sql>
